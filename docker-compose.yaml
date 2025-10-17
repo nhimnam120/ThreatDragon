@@ -1,0 +1,9 @@
+services:
+  threat-dragon:
+    image: owasp/threat-dragon:v2.5.0
+    container_name: threatdragon
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config.env:/app/.env:ro
+    restart: unless-stopped
