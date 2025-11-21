@@ -260,11 +260,33 @@
                   "new": false,
                   "number": 101,
                   "score": "28"
+                },
+                {
+                  "id": "ce366694-5769-488a-a476-d83b7a805b8d",
+                  "title": "Elevation of  Privilege to find unpublic data (hidden)",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Attacker send wrong data (Routing Infomation) to Auth service\n\nCAPEC-87: Forceful Browsing: An attacker employs forceful browsing (direct URL entry) to access portions of a website that are otherwise unreachable.\n\nATT&CK: T1187 - Forced Authentication: Adversaries may gather credential material by invoking or forcing a user to automatically provide authentication information through a mechanism in which they can intercept.\nD: 8 / R: 9 / E: 8 / A: 7 / DREA: 32",
+                  "mitigation": "Check if the user have right to access the data\n\nDEFEND: D3-AMED: Access mediation: Access mediation is the process of granting or denying specific requests to: 1) obtain and use information and related information processing services; and 2) enter specific physical facilities (e.g., Federal buildings, military establishments, border crossing entrances). Access mediation decisions should enforce least privilege by granting access for scoped durations to prevent privilege creep and, where applicable, implement just-in-time (JIT) access. Denial decisions may prevent initial access or terminate access that has already been granted, ensuring continuous enforcement of security policies.\nD: 8 /R: 5 /E: 5 /A: 7 /DREA: 25",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 107,
+                  "score": "25"
                 }
               ],
               "hasOpenThreats": false,
               "isWebApplication": null,
-              "handlesCardPayment": null
+              "handlesCardPayment": null,
+              "handlesGoodsOrServices": null,
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 3
+              }
             },
             "children": []
           },
@@ -387,7 +409,8 @@
               "isEncrypted": false,
               "isPublicNetwork": false,
               "handlesCardPayment": null,
-              "isWebApplication": null
+              "isWebApplication": null,
+              "handlesGoodsOrServices": null
             }
           },
           {
@@ -502,8 +525,40 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false
+              "threats": [
+                {
+                  "id": "b50bbd35-b206-4c9f-a6bb-c87416e4a4d1",
+                  "title": "Spoofing von Telco-data",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Angreifer kann sich als Telco Service ausgeben, um an Telefonnummern von Kunden zu kommen.\n\nCAPEC-158: Sniffing Network Traffic: In this attack pattern, the adversary monitors network traffic between nodes of a public or multicast network in an attempt to capture sensitive information at the protocol level.\nAtt&ck: T1557 (Adversary-in-the-Middle)\n\nD: 6 / R: 7 / E: 4 / A: 8 / DREA: 25\n",
+                  "mitigation": "Datenverkehr zwischen Telco Service und Allsecure verschlüsseln.\nDEFEND: D3-MENCR: Message Encryption\nMASVS-CRYPTO-1: The app employs current strong cryptography and uses it according to industry best practices.\nD:6 /R: 2 /E: 2 /A: 8 /DREA: 18",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 108,
+                  "score": "18"
+                }
+              ],
+              "hasOpenThreats": false,
+              "isWebApplication": null,
+              "handlesCardPayment": null,
+              "handlesGoodsOrServices": null,
+              "threatFrequency": {
+                "spoofing": 3,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -639,7 +694,8 @@
               "isEncrypted": false,
               "isPublicNetwork": false,
               "handlesCardPayment": null,
-              "handlesGoodsOrServices": null
+              "handlesGoodsOrServices": null,
+              "isWebApplication": null
             }
           },
           {
@@ -1303,7 +1359,17 @@
                 "x": 1180,
                 "y": -91
               }
-            ]
+            ],
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead"
+              ],
+              "name": null
+            }
           },
           {
             "shape": "flow",
@@ -1359,7 +1425,7 @@
             },
             "vertices": [
               {
-                "x": 840,
+                "x": 790,
                 "y": 0
               }
             ]
@@ -1964,7 +2030,28 @@
               "isEncrypted": true,
               "isSigned": true,
               "hasOpenThreats": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "2951db36-1567-4b91-85da-ed09b0c217fc",
+                  "title": "DB-Logs Tampering",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "Attacker alter/tampering with data on the database\n\nCAPEC-248: Command Injection: An adversary looking to execute a command of their choosing, injects new items into an existing command thus modifying interpretation away from what was intended.\n\nATT&CK: T1565 - Data Manipulation: Adversaries may insert, delete, or manipulate data in order to influence external outcomes or hide activity, thus threatening the integrity of the data.\n\nD: 6 / R: 9 / E: 8 / A: 9 / DREA: 32",
+                  "mitigation": "Encrypt the data on the database\n\nDEFEND: D3-FE : Encrypting a file using a cryptographic key.\n\nD: 5 /R: 8 /E: 7 /A: 8 /DREA: 28",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 104,
+                  "score": "28"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 2,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              },
+              "storesInventory": null
             }
           },
           {
@@ -2235,6 +2322,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 14,
             "ports": {
               "groups": {
                 "top": {
@@ -2318,7 +2406,6 @@
               ]
             },
             "id": "396d1704-3564-4f80-ab95-9b998621dc96",
-            "zIndex": 14,
             "data": {
               "type": "tm.Actor",
               "name": "Management",
@@ -2352,6 +2439,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 15,
             "ports": {
               "groups": {
                 "top": {
@@ -2435,7 +2523,6 @@
               ]
             },
             "id": "b52594d4-7bc4-4b96-81fd-eacb189bcfa6",
-            "zIndex": 15,
             "data": {
               "type": "tm.Process",
               "name": "SIEM-System\n",
@@ -2448,7 +2535,29 @@
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "d7829d10-a8a5-486b-9ea0-2d20f16f6c80",
+                  "title": "Email Interception",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Attacker intercept email contain SIEM report.\n\nCAPEC Id: 117: An adversary monitors data streams to or from the target for information gathering purposes. This attack may be undertaken to solely gather sensitive information or to support a further attack against the target. This attack pattern can involve sniffing network traffic as well as other types of data streams (e.g. radio). The adversary can attempt to initiate the establishment of a data stream or passively observe the communications as they unfold. In all variants of this attack, the adversary is not the intended recipient of the data stream. In contrast to other means of gathering information (e.g., targeting data leaks), the adversary must actively position themself so as to observe explicit data channels (e.g. network traffic) and read the content. However, this attack differs from a Adversary-In-the-Middle (CAPEC-94) attack, as the adversary does not alter the content of the communications nor forward data to the intended recipient.\nAttack: T1114 (Email Collection)\nD: 8 /R: 6 / E: 4 /A: 9 /DREA: 27",
+                  "mitigation": "Send decoy file to deceive attacker.\nDEFEND: D3-DF: Decoy File: A file created for the purposes of deceiving an adversary.\nD: 4 /R: 6 /E: 4 /A: 9 /DREA: 23",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 103,
+                  "score": "23"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
             }
           },
           {
@@ -2475,6 +2584,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 16,
             "ports": {
               "groups": {
                 "top": {
@@ -2558,7 +2668,6 @@
               ]
             },
             "id": "d0846896-c678-44b6-ad5e-24684a231594",
-            "zIndex": 16,
             "data": {
               "type": "tm.Store",
               "name": "SIEM-DB",
@@ -2572,7 +2681,27 @@
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "4f5787d4-da69-4e02-abca-a18cf82c39f7",
+                  "title": "Altering SIEM Logdata for repudiation",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Altering the logdata in the SIEM database, e.g. IPS or timestamps to deny being resposible for an attack.\n\nCAPEC-248: Command Injection: An adversary looking to execute a command of their choosing, injects new items into an existing command thus modifying interpretation away from what was intended.\n\nATT&CK: T1565 - Data Manipulation: Adversaries may insert, delete, or manipulate data in order to influence external outcomes or hide activity, thus threatening the integrity of the data.\n\nD: 5 / R: 8 / E: 8 / A: 4 / DREA: 25",
+                  "mitigation": "Letting just the SIEM service deliver data to DB\n\nDEFEND: D3-IOPR: IO Port Restriction\n\nD: 5 /R: 4 /E: 4 /A: 4 /DREA: 17",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 105,
+                  "score": "17"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 3,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
             }
           },
           {
@@ -2596,6 +2725,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 17,
             "ports": {
               "groups": {
                 "top": {
@@ -2679,7 +2809,6 @@
               ]
             },
             "id": "cad09414-d771-4247-b11b-864b42f26583",
-            "zIndex": 17,
             "data": {
               "type": "tm.Process",
               "name": " Allsecure Mobile \nPhone OTT\nService",
@@ -2692,7 +2821,29 @@
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "b2b4417e-54b7-4f48-b880-efcac308f4c0",
+                  "title": "Denial of Service des OTT Service",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Attacker send wrong data (Routing Infomation) to Auth service\n\nCAPEC-148: Content Spoofing: An adversary modifies content to make it contain something other than what the original content producer intended while keeping the apparent source of the content unchanged.\n\nATT&CK: T1565 - Data Manipulation: Adversaries may insert, delete, or manipulate data in order to influence external outcomes or hide activity, thus threatening the integrity of the data.\n\nD: 6 / R: 9 / E: 8 / A: 9 / DREA: 32",
+                  "mitigation": "Firewall einsetzen, um direkten Datenverkehr auf OTT services zu filtern.\n\nDEFEND: D3-ITF - Inbound Traffic Filtering\nASVS: CWE 770 (8.1.4): Verify the application can detect and alert on abnormal numbers of requests, such as by IP, user, total per hour or day, or whatever makes sense for the application.\n\nD: 4 / R: 10 / E: 4 / A: 8 / Neuer DREA: 26",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 106,
+                  "score": "26"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 3,
+                "elevationOfPrivilege": 0
+              }
             }
           }
         ],
@@ -2705,7 +2856,7 @@
     ],
     "reviewer": "Georg Neugebauer",
     "diagramTop": 10,
-    "threatTop": 102
+    "threatTop": 108
   },
   "version": "2.5.0"
 }
