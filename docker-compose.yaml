@@ -1,9 +1,21 @@
 services:
-  threat-dragon:
-    image: owasp/threat-dragon:v2.5.0
-    container_name: threatdragon
+  reverseproxy:
+    container_name: reverseproxy
+    image: nginx:latest
     ports:
-      - "8080:8080"
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/SSL/threatdragon-team3.devsecops.fh-aachen.de.cer:/etc/ssl/certs/threatdragon-team3.devsecops.fh-aachen.de.cer:ro
+      - ./nginx/SSL/threatdragon-team3.devsecops.fh-aachen.de.key:/etc/ssl/private/threatdragon-team3.devsecops.fh-aachen.de.key:ro
+    depends_on:
+      - threatdragon
+
+  threatdragon:
+    container_name: threatdragon
+    image: owasp/threat-dragon:v2.5.0
+    expose:
+      - "8080"
     volumes:
       - ./config.env:/app/.env:ro
-    restart: unless-stopped
